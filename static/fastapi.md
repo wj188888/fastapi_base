@@ -86,4 +86,43 @@ def login():
 ```
 ## 获取URL参数
 1. 在url的path后边添加参数
-2. 
+
+### 把path路径改成`?id=8` :叫做查询字符串
+```
+@app.get("/user")
+def user(id):
+    return {"id": id}
+```
+然后运行app>然后可以输入路径
+```
+http://127.0.0.1:8000/user?id=1232
+# 同样可以得到返回的json数据
+```
+
+## 如何传递token,然后如何post提交参数
+1. 如何传递token?
+```
+# 导入,然后吧token设定默认值
+from fastapi import FastAPI, Header
+@app.get("/user")
+def user(id, token=Header(None)): # 传递一个token,然后默认值为Header(None)
+    return {"id": id, "token": token}
+```
+2. 如何传递那个post提交json参数
+```
+# 导入,然后
+from fastapi import FastAPI, Header, Body
+@app.post("/login")
+def login(data=Body(None)): # 传递一个token,然后默认值为Header(None)
+    return {"data": data}
+```
+
+3. 如何form表单传递post请求参数
+```
+# 导入, 然后传递data参数
+from fastapi import FastAPI, Header, Form
+
+@app.post("/login")
+def user(username=Form(None), password=Form(None)): # 传递一个token,然后默认值为Header(None)
+    return {"data": {"username": username, "password": password}}
+```
