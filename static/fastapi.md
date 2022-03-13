@@ -78,3 +78,12 @@ http://127.0.0.1:8000/docs
 ```
 http://127.0.0.1:8000/redoc
 ```
+## 发送post请求(这个没有成功)
+```
+@app.post("/login")
+def login():
+    return {"msg": "login success"}
+```
+## 获取URL参数
+1. 在url的path后边添加参数
+2. 
