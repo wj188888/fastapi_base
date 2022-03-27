@@ -3,12 +3,22 @@
 from fastapi import FastAPI, Request
 # 引入这个模板引擎,用于解析html文件内容
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
+
+# 将app实例和数据库绑定在一起
+from tortoise.contrib.fastapi import register_tortoise
 
 
 
 app = FastAPI()
 template = Jinja2Templates("../../../static/pages")
 
+# 数据库绑定
+register_tortoise(app,
+                  db_url="mysql://root:123456@localhost:3306/fastapi",
+                  modules={"models": []},
+                  generate_schemas=True,
+                  add_exception_handlers=True)
 
 @app.get("/")
 def user(username, req: Request):

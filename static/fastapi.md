@@ -126,3 +126,7 @@ from fastapi import FastAPI, Header, Form
 def user(username=Form(None), password=Form(None)): # 传递一个token,然后默认值为Header(None)
     return {"data": {"username": username, "password": password}}
 ```
+
+4. fastapi如何去写入数据库
+- 第一步: pip install tortoise-orm
+- 第二步: 
